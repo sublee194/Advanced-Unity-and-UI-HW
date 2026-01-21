@@ -66,6 +66,9 @@ sysinfo.txt
 # Mono auto generated files
 mono_crash.*
 
+# Source asset archives (not required for Unity runtime)
+*.zip
+
 # Builds
 *.apk
 *.aab
