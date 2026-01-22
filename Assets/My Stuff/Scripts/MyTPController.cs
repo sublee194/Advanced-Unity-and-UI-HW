@@ -48,6 +48,8 @@ public class MyTPController : MonoBehaviour
         }
 
         _cc.Move(moveDirection * moveSpeed * Time.deltaTime);
-        tpCamera.UpdateFollowPt();
+        tpCamera.UpdateFollowPt();        
     }
+
+
 }
