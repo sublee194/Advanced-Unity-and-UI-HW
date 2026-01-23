@@ -2,11 +2,12 @@ using UnityEngine;
 
 public class WeaponController : MonoBehaviour
 {
-    public int ammo;
+    public int currentAmmo;
+    public AmmoUI ammoUI;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        ammo = 10;
+        currentAmmo = 10;
     }
 
     // Update is called once per frame
@@ -17,12 +18,13 @@ public class WeaponController : MonoBehaviour
 
     public void SpendAmmo()
     {
-        if (ammo > 0)
+        if (currentAmmo > 0)
         {
-            ammo -= 1;
+            currentAmmo -= 1;
+            ammoUI.UpdateAmmoDisplay(currentAmmo);
         }
 
-        Debug.Log($"Ammo Count: {ammo}");
+        Debug.Log($"Ammo Count: {currentAmmo}");
 
     }
 }
