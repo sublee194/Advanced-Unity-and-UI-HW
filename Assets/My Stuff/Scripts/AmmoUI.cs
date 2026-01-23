@@ -5,13 +5,14 @@ public class AmmoUI : MonoBehaviour
 {
     [Header("UI Settings")]
     public Image[] ammoSlots;
-
     private int maxAmmo;
+    private int maxMagazine;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         maxAmmo = ammoSlots.Length;
+        maxMagazine = 5; //之後改掉
         UpdateAmmoDisplay(maxAmmo);
     }
 
@@ -31,5 +32,28 @@ public class AmmoUI : MonoBehaviour
             // (i < currentAmmo) 回傳一個 bool
             ammoSlots[i].enabled = (i < currentAmmo);
         }
+    }
+
+    public void ShowNoAmmoMessage()
+    {
+        Debug.Log("No Ammo!");
+    }
+
+    public void UpdateMagazineDisplay(int currentMagazine)
+    {        
+        currentMagazine = Mathf.Clamp(currentMagazine, 0, maxMagazine);
+
+        Debug.Log("Update Magazine Display");
+
+        // 等有 magazineSlots 再加上來
+        //for (int i = 0; i < maxMagazine; i++)
+        //{       
+        //    magazineSlots[i].enabled = (i < currentMagazine); 
+        //}
+    }
+
+    public void ShowNoMagazineMessage()
+    {
+        Debug.Log("No Magazine!");
     }
 }
