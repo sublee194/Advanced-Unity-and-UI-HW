@@ -24,7 +24,7 @@ public class InputHandler : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.R))
         {
-            _animator.SetTrigger("IsReloading");
+            wpController.TryReload();     
         }      
     }
 }

@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class ReloadStateBlocker : StateMachineBehaviour
 {
+    //這個腳本要掛在狀態機 的 Shoot state 裡面！
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
