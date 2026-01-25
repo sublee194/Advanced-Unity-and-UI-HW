@@ -5,6 +5,7 @@ public class AmmoUI : MonoBehaviour
 {
     [Header("UI Settings")]
     public Image[] ammoSlots;
+    public Image[] magazineSlots;
     private int maxAmmo;
     private int maxMagazine;
 
@@ -12,8 +13,9 @@ public class AmmoUI : MonoBehaviour
     void Start()
     {
         maxAmmo = ammoSlots.Length;
-        maxMagazine = 5; //之後改掉
+        maxMagazine = magazineSlots.Length;
         UpdateAmmoDisplay(maxAmmo);
+        UpdateMagazineDisplay(maxMagazine);
     }
 
     // Update is called once per frame
@@ -44,12 +46,11 @@ public class AmmoUI : MonoBehaviour
         currentMagazine = Mathf.Clamp(currentMagazine, 0, maxMagazine);
 
         Debug.Log("Update Magazine Display");
-
-        // 等有 magazineSlots 再加上來
-        //for (int i = 0; i < maxMagazine; i++)
-        //{       
-        //    magazineSlots[i].enabled = (i < currentMagazine); 
-        //}
+                
+        for (int i = 0; i < maxMagazine; i++)
+        {
+            magazineSlots[i].enabled = (i < currentMagazine);
+        }
     }
 
     public void ShowNoMagazineMessage()

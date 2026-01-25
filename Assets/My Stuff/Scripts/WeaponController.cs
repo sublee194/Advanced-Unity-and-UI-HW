@@ -73,7 +73,9 @@ public class WeaponController : MonoBehaviour
             _animator.SetTrigger("IsReloading");
 
             currentMagazine -= 1;
+            currentAmmo = 10;
             ammoUI.UpdateMagazineDisplay(currentMagazine);
+            ammoUI.UpdateAmmoDisplay(currentAmmo);
         }
         else
         {

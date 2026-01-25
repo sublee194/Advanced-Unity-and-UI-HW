@@ -98,7 +98,8 @@ public class MyTPCamera : MonoBehaviour
 
         //把 camera 用線性內差的方式移動到先前計算的最終位置
         transform.position = Vector3.Lerp(transform.position, vFinalPosition, 1.0f);
-        
+        //transform.position = Vector3.SmoothDamp(transform.position, vFinalPosition, ref mCurrentVel, 0.001f, 10.0f);
+
         //重新指定 camera 方向
         vDir = mFollowPoint.position - transform.position;
         transform.forward = vDir;
