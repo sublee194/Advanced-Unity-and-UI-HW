@@ -18,9 +18,12 @@ public class MyTPCamera : MonoBehaviour
     private Vector3 mHorizontalVector;
     public float mMouseRotateSensitivity = 1.0f;
     public float followSpeed = 10.0f;
-    //private Vector3 mCurrentVel = Vector3.zero;
-    //public LayerMask mCheckLayer;
+    private Vector3 mCurrentVel = Vector3.zero;
+    public LayerMask mCheckLayer;
 
+    ////新內容
+    //[Header("Screen Composition")]
+    //public Vector2 mScreenOffset = new Vector2(-0.3f, -0.25f);
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -45,7 +48,9 @@ public class MyTPCamera : MonoBehaviour
         Vector3 vDir = transform.position - mFollowPoint.position;
         vDir.y = 0.0f;
         vDir.Normalize();
-        mHorizontalVector = Vector3.Lerp(mHorizontalVector, vDir, 10.0f * Time.deltaTime);
+
+        //最後的參數，數字越小，角色左右移動時的旋轉半徑越大
+        mHorizontalVector = Vector3.Lerp(mHorizontalVector, vDir, 1.0f);
         mHorizontalVector.Normalize();
     }
 
@@ -90,15 +95,45 @@ public class MyTPCamera : MonoBehaviour
         //對其進行標準化，因為我們只需要它的「方向」，大小應由 distance 決定 (見下)
         vFinalDir.Normalize();
 
+        
+
+        //這一行為舊方法？刪掉？
+        //mFollowPoint.position = Vector3.Lerp(mFollowPoint.position, mFollowPointRef.position, 1.0f);
+
         //計算 camaera 位置：角色的 FollowPoint 往 vFinalDir 的方向移動 distance 的距離，就是 camera 的最終位置
         Vector3 vFinalPosition = mFollowPoint.position + vFinalDir * mFollowDistance;
-
-        //計算 camera 朝向？
+               
+        //計算 camera 朝向
         Vector3 vDir = mFollowPoint.position - vFinalPosition;
+        
+        //在把 camera 指定至 vFinalPosition 前，進行碰撞偵測，若 camera 位置會撞到物體，則縮短 distance
+        RaycastHit rh;
+        Ray r = new Ray(mFollowPoint.position, -vDir);
+        if (Physics.SphereCast(r, 0.1f, out rh, mFollowDistance, mCheckLayer))
+        {
+            vDir.Normalize();
+            vFinalPosition = mFollowPoint.position - vDir * (rh.distance - 0.1f);
+        }
 
         //把 camera 用線性內差的方式移動到先前計算的最終位置
         transform.position = Vector3.Lerp(transform.position, vFinalPosition, 1.0f);
+
         //transform.position = Vector3.SmoothDamp(transform.position, vFinalPosition, ref mCurrentVel, 0.001f, 10.0f);
+        //ChatGPT：ref currentVelocity 不應該 < 0.05 ==> 超出系統預設 ==> 建議設在 0.1f – 0.25f 間
+        //transform.position = Vector3.SmoothDamp(transform.position, vFinalPosition, ref mCurrentVel, 0.15f, Mathf.Infinity);
+
+        //新內容
+        //Vector3 lookTarget = mFollowPoint.position;
+        //// camera 的 local 軸
+        //Vector3 camRight = transform.right;
+        //Vector3 camUp = transform.up;
+
+        //// 把 offset 轉成世界座標
+        //lookTarget += camRight * mScreenOffset.x;
+        //lookTarget += camUp * mScreenOffset.y;
+
+        //Vector3 lookDir = lookTarget - transform.position;
+        //transform.forward = lookDir.normalized;
 
         //重新指定 camera 方向
         vDir = mFollowPoint.position - transform.position;
