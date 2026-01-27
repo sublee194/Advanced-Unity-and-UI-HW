@@ -6,6 +6,7 @@ public class AmmoUI : MonoBehaviour
     [Header("UI Settings")]
     public Image[] ammoSlots;
     public Image[] magazineSlots;
+    public Image[] crossHairs;
     private int maxAmmo;
     private int maxMagazine;
 
@@ -16,6 +17,9 @@ public class AmmoUI : MonoBehaviour
         maxMagazine = magazineSlots.Length;
         UpdateAmmoDisplay(maxAmmo);
         UpdateMagazineDisplay(maxMagazine);
+        Image NoTarget = crossHairs[0];
+        Image InRange = crossHairs[1];
+        Image Shot = crossHairs[2];
     }
 
     // Update is called once per frame
@@ -56,5 +60,10 @@ public class AmmoUI : MonoBehaviour
     public void ShowNoMagazineMessage()
     {
         Debug.Log("No Magazine!");
+    }
+
+    public void UpdateCrossHair()
+    {
+
     }
 }
