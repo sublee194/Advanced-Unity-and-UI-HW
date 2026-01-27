@@ -9,6 +9,8 @@ public class WeaponController : MonoBehaviour
     public AmmoUI ammoUI;
     public bool cannotShoot;
     public bool cannotReload;
+
+    public CrosshairUI crosshair;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -51,6 +53,7 @@ public class WeaponController : MonoBehaviour
         //這個函式被 Shoot_SingleShot_copy animation 的事件呼叫
         Debug.Log("Start Shoot!");
         cannotReload = true;
+        crosshair.ChangeIsShooting();
     }
 
     public void EndShoot()
@@ -58,6 +61,7 @@ public class WeaponController : MonoBehaviour
         //這個函式被 Shoot_SingleShot_copy animation 的事件呼叫
         Debug.Log("End Shoot!");
         cannotReload = false;
+        crosshair.ChangeIsShooting();
     }
     public void TryReload()
     {

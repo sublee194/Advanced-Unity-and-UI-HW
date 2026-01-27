@@ -62,7 +62,7 @@ public class AmmoUI : MonoBehaviour
         Debug.Log("No Magazine!");
     }
 
-    public void UpdateCrossHair()
+    public void UpdateCrosshair()
     {
 
     }
