@@ -21,7 +21,7 @@ public class MyTPCamera : MonoBehaviour
     private Vector3 mCurrentVel = Vector3.zero;
     public LayerMask mCheckLayer;
 
-    ////新內容
+    //新內容：試圖將角色釘在左下角，但是旋轉會出問題
     //[Header("Screen Composition")]
     //public Vector2 mScreenOffset = new Vector2(-0.3f, -0.25f);
 
@@ -122,16 +122,14 @@ public class MyTPCamera : MonoBehaviour
         //ChatGPT：ref currentVelocity 不應該 < 0.05 ==> 超出系統預設 ==> 建議設在 0.1f – 0.25f 間
         //transform.position = Vector3.SmoothDamp(transform.position, vFinalPosition, ref mCurrentVel, 0.15f, Mathf.Infinity);
 
-        //新內容
+        //新內容：試圖將角色釘在左下角，但是旋轉會出問題
         //Vector3 lookTarget = mFollowPoint.position;
         //// camera 的 local 軸
         //Vector3 camRight = transform.right;
         //Vector3 camUp = transform.up;
-
         //// 把 offset 轉成世界座標
         //lookTarget += camRight * mScreenOffset.x;
         //lookTarget += camUp * mScreenOffset.y;
-
         //Vector3 lookDir = lookTarget - transform.position;
         //transform.forward = lookDir.normalized;
 

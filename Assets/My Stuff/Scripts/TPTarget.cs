@@ -15,6 +15,9 @@ public class TPTarget : MonoBehaviour
     public float mMouseRotateSensitivity = 100.0f;
 
     public Transform lookTarget;
+
+    public GameObject player;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -64,7 +67,13 @@ public class TPTarget : MonoBehaviour
 
         Quaternion qRot = Quaternion.LookRotation(vFinalDir);
         target.rotation = Quaternion.RotateTowards(target.rotation, qRot, 500 * Time.deltaTime);
-       // transform.rotation = Quaternion.Lerp(transform.rotation, qRot, );
+        // transform.rotation = Quaternion.Lerp(transform.rotation, qRot, );
+
+        //在這裡加入角色旋轉？
+        //Vector3 avatarFacing;
+        //avatarFacing = transform.forward;
+        //avatarFacing.y = 0.0f;
+        //player.transform.rotation = Quaternion.LookRotation(avatarFacing);
 
         //vLastForward = target.forward;
         //target.forward = vFinalDir;
