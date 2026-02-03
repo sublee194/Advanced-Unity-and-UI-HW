@@ -19,6 +19,8 @@ public class MiniMapController : MonoBehaviour
 
     public Image iconRect;
 
+    public Transform cameraTransform;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -54,6 +56,8 @@ public class MiniMapController : MonoBehaviour
         r.height = windowSize;
 
         mapImage.uvRect = r;
-        iconRect.transform.rotation = Quaternion.Euler(0, 0, -player.eulerAngles.y);
+        //iconRect.transform.rotation = Quaternion.Euler(0, 0, -player.eulerAngles.y);
+        float yaw = cameraTransform.eulerAngles.y;
+        mapImage.rectTransform.localRotation = Quaternion.Euler(0, 0, yaw);
     }
 }
