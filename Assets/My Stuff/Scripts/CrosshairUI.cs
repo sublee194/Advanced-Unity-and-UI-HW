@@ -11,16 +11,16 @@ public class CrosshairUI : MonoBehaviour
     private Vector3 screenCenter;
     private Ray ray;
     public float maxDistance;
-    private LayerMask mask;
+    public LayerMask CrosshairMask;
 
     bool isShooting;
+    
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         screenCenter = new Vector3(Screen.width * 0.5f,Screen.height * 0.5f, 0f);
         isShooting = false;
-        
     }
 
     // Update is called once per frame
@@ -28,8 +28,7 @@ public class CrosshairUI : MonoBehaviour
     {
         RaycastHit hit;
         Ray ray = Camera.main.ScreenPointToRay(screenCenter);
-        int mask = LayerMask.GetMask("Environment");        
-        bool targetInAim = Physics.Raycast(ray, out hit, maxDistance, mask);
+        bool targetInAim = Physics.Raycast(ray, out hit, maxDistance, CrosshairMask);
 
         if (isShooting)
         {
