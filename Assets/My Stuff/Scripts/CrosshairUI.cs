@@ -19,7 +19,7 @@ public class CrosshairUI : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        screenCenter = new Vector3(Screen.width * 0.5f,Screen.height * 0.5f, 0f);
+        screenCenter = new Vector3(Screen.width * 0.5f, Screen.height * 0.5f, 0f);
         isShooting = false;
     }
 
@@ -33,17 +33,17 @@ public class CrosshairUI : MonoBehaviour
         if (isShooting)
         {
             SetState(CrosshairState.Shooting);
-            crosshair.color = Color.white;
+            //crosshair.color = Color.white;
         }
         else if (targetInAim)
         {
             SetState(CrosshairState.Target);
-            crosshair.color = Color.red;
+            //crosshair.color = Color.red;
         }
         else
         {
             SetState(CrosshairState.Idle);
-            crosshair.color = Color.white;
+            //crosshair.color = Color.white;
         }
     }
 
@@ -51,14 +51,17 @@ public class CrosshairUI : MonoBehaviour
     {
         switch (state)
         {
-            case CrosshairState.Idle:
-                crosshair.texture = idle;
+            case CrosshairState.Shooting:
+                crosshair.texture = shooting;
+                crosshair.color = Color.white;
                 break;
             case CrosshairState.Target:
                 crosshair.texture = target;
+                crosshair.color = Color.red;
                 break;
-            case CrosshairState.Shooting:
-                crosshair.texture = shooting;
+            case CrosshairState.Idle:
+                crosshair.texture = idle;
+                crosshair.color = Color.white;
                 break;
         }
     }
