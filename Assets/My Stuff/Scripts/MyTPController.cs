@@ -13,6 +13,7 @@ public class MyTPController : MonoBehaviour
     private CharacterController _cc;
 
     [SerializeField] private ControlMode currentMode = ControlMode.FreeMove;
+
     public ControlMode CurrentMode => currentMode;
     public void SetMode(ControlMode mode)
     {
@@ -91,4 +92,6 @@ public class MyTPController : MonoBehaviour
         _animator.SetFloat("MoveX", fH);
         _animator.SetFloat("MoveZ", fV);
     }
+
+    
 }

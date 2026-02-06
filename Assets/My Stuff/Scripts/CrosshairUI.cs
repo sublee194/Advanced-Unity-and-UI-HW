@@ -1,3 +1,4 @@
+using Game.Character;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,6 +13,8 @@ public class CrosshairUI : MonoBehaviour
     private Ray ray;
     public float maxDistance;
     public LayerMask CrosshairMask;
+
+    public MyTPController controller;
 
     bool isShooting;
     
@@ -30,21 +33,27 @@ public class CrosshairUI : MonoBehaviour
         Ray ray = Camera.main.ScreenPointToRay(screenCenter);
         bool targetInAim = Physics.Raycast(ray, out hit, maxDistance, CrosshairMask);
 
-        if (isShooting)
+        if (controller.CurrentMode == ControlMode.AimMove)
         {
-            SetState(CrosshairState.Shooting);
-            //crosshair.color = Color.white;
-        }
-        else if (targetInAim)
-        {
-            SetState(CrosshairState.Target);
-            //crosshair.color = Color.red;
+            crosshair.enabled = true;
+            if (isShooting)
+            {
+                SetState(CrosshairState.Shooting);
+            }
+            else if (targetInAim)
+            {
+                SetState(CrosshairState.Target);
+            }
+            else
+            {
+                SetState(CrosshairState.Idle);
+            }
         }
         else
         {
-            SetState(CrosshairState.Idle);
-            //crosshair.color = Color.white;
+            crosshair.enabled = false;
         }
+        
     }
 
     public void SetState(CrosshairState state)
@@ -73,6 +82,8 @@ public class CrosshairUI : MonoBehaviour
         else
             isShooting = true;
     }
+
+    
 }
 
 public enum CrosshairState
@@ -80,4 +91,7 @@ public enum CrosshairState
     Idle,
     Target,
     Shooting
+    //新增 Hidden
+    //Target分成 TargetMissed 和 TargetHit
 }
+

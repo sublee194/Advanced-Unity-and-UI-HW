@@ -158,6 +158,7 @@ MonoBehaviour:
   CrosshairMask:
     serializedVersion: 2
     m_Bits: 256
+  controller: {fileID: 1902638402}
 --- !u!114 &23115595
 MonoBehaviour:
   m_ObjectHideFlags: 0

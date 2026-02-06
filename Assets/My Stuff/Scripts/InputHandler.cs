@@ -8,7 +8,6 @@ public class InputHandler : MonoBehaviour
     private WeaponController wpController;
     private MyTPController tpContoller;
 
-
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -22,7 +21,10 @@ public class InputHandler : MonoBehaviour
     {
         if (Input.GetButtonDown("Fire1"))
         {
-            wpController.TryShoot();            
+            if(tpContoller.CurrentMode == ControlMode.AimMove)
+            {
+                wpController.TryShoot();
+            }
         }
 
         if (Input.GetKeyDown(KeyCode.R))

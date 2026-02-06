@@ -1,7 +1,8 @@
+using Game.Combat;
 using UnityEngine;
 using UnityEngine.InputSystem.XR;
 
-public class WeaponController : MonoBehaviour
+public class WeaponController : MonoBehaviour, IDamageSource
 {
     private Animator _animator;
     private int currentAmmo;
@@ -11,6 +12,11 @@ public class WeaponController : MonoBehaviour
     public bool cannotReload;
 
     public CrosshairUI crosshair;
+
+    [SerializeField] float baseDamage = 25f;
+    [SerializeField] float critChance = 0.1f;
+    [SerializeField] float critMultiplier = 1.5f;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -101,5 +107,15 @@ public class WeaponController : MonoBehaviour
         //這個函式被 Reload_copy animation 的事件呼叫
         Debug.Log("End Reload");
         cannotShoot = false;
+    }
+
+    public DamageData GetDamageValue()
+    {
+        return new DamageData
+        {
+            BaseDamage = baseDamage,
+            CritChance = critChance,
+            CritMultiplier = critMultiplier
+        };
     }
 } 

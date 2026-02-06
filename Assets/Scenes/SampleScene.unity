@@ -1105,6 +1105,9 @@ MonoBehaviour:
   target: {fileID: 2800000, guid: 56f8165bc8b0a98419e06f018a808c4c, type: 3}
   shooting: {fileID: 2800000, guid: 9ee137293631b9e46b1a401b72b130a4, type: 3}
   maxDistance: 50
+  CrosshairMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &621243653
 GameObject:
   m_ObjectHideFlags: 0
@@ -1946,6 +1949,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 17.889034
       objectReference: {fileID: 0}
+    - target: {fileID: 7673487251499544598, guid: c98043d57e0190845b790d7b92990bee, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -97.511
+      objectReference: {fileID: 0}
+    - target: {fileID: 7673487251499544598, guid: c98043d57e0190845b790d7b92990bee, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -57.705
+      objectReference: {fileID: 0}
+    - target: {fileID: 7673487251499544602, guid: c98043d57e0190845b790d7b92990bee, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.48
+      objectReference: {fileID: 0}
+    - target: {fileID: 7673487251499544602, guid: c98043d57e0190845b790d7b92990bee, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -162.643
+      objectReference: {fileID: 0}
     - target: {fileID: 7673487251499544612, guid: c98043d57e0190845b790d7b92990bee, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: -87.157104
@@ -2114,6 +2133,10 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: ff36e2ed66384ca4a8eb96d12a343182, type: 2}
+    - target: {fileID: 7673487251510747448, guid: c98043d57e0190845b790d7b92990bee, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7673487251510747448, guid: c98043d57e0190845b790d7b92990bee, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
