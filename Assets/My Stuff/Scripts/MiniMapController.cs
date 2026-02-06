@@ -18,7 +18,7 @@ public class MiniMapController : MonoBehaviour
 
     public RawImage mapImage;
 
-    public Image iconRect;
+    public Image avatarIcon;
 
     public Transform cameraTransform;
 
@@ -70,8 +70,15 @@ public class MiniMapController : MonoBehaviour
         //mapIamge.uvRect.x = blahblahblah; mapIamge.uvRect.height = blahblahblah
         //Its property's setter blocks it ==> only a Rect value type can be assigned to something.uvRect, but something.uvRect.parameters cannot be set
 
-        float yaw = cameraTransform.eulerAngles.y;
-        mapImage.rectTransform.localRotation = Quaternion.Euler(0, 0, yaw);
+        float cameraYaw = cameraTransform.eulerAngles.y;
+        mapImage.rectTransform.localRotation = Quaternion.Euler(0, 0, cameraYaw);
+
+        // playerYaw 之所以是顛倒的 (負值)，是因為：角色 y 軸朝上，而 canvas 的 z 軸朝內 (下)
+        // 所以當角色轉對 y 軸轉 X 度 = 角色 icon 對 z 軸轉 -X 度
+        float playerYaw = player.eulerAngles.y;
+        avatarIcon.rectTransform.localRotation = Quaternion.Euler(0, 0, -playerYaw);
+
+
     }
 
     void OnDrawGizmos()
