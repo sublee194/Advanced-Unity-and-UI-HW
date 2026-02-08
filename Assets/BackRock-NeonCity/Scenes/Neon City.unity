@@ -10928,6 +10928,9 @@ MonoBehaviour:
   cannotShoot: 0
   cannotReload: 0
   crosshair: {fileID: 23115594}
+  baseDamage: 25
+  critChance: 0.1
+  critMultiplier: 1.5
 --- !u!143 &1902638401
 CharacterController:
   m_ObjectHideFlags: 0
@@ -23594,6 +23597,7 @@ GameObject:
   - component: {fileID: 6718545260275014205}
   - component: {fileID: 1998899901}
   - component: {fileID: 8852359536347148024}
+  - component: {fileID: 8852359536347148025}
   m_Layer: 8
   m_Name: SciFi-Van-2
   m_TagString: Untagged
@@ -23729,6 +23733,7 @@ GameObject:
   - component: {fileID: 6169702059815899039}
   - component: {fileID: 622127887921045280}
   - component: {fileID: 8249424758693854038}
+  - component: {fileID: 8249424758693854039}
   m_Layer: 8
   m_Name: SciFi-Van-1
   m_TagString: Untagged
@@ -24510,6 +24515,20 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -286909919748639373, guid: fa4cdce30f7553a41ab78389fb3a80a5, type: 3}
+--- !u!114 &8249424758693854039
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5665479014471249482}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd4988038ead86944b0ec2493e5c33a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hp: 100
+  armor: 10
 --- !u!23 &8393206377504092893
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -24637,6 +24656,20 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -286909919748639373, guid: fa4cdce30f7553a41ab78389fb3a80a5, type: 3}
+--- !u!114 &8852359536347148025
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5061462283981175784}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd4988038ead86944b0ec2493e5c33a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hp: 100
+  armor: 10
 --- !u!23 &9103929612659989038
 MeshRenderer:
   m_ObjectHideFlags: 0

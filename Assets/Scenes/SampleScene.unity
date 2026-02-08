@@ -1108,6 +1108,7 @@ MonoBehaviour:
   CrosshairMask:
     serializedVersion: 2
     m_Bits: 0
+  controller: {fileID: 0}
 --- !u!1 &621243653
 GameObject:
   m_ObjectHideFlags: 0
@@ -1422,6 +1423,9 @@ MonoBehaviour:
   cannotShoot: 0
   cannotReload: 0
   crosshair: {fileID: 580929550}
+  baseDamage: 25
+  critChance: 0.1
+  critMultiplier: 1.5
 --- !u!114 &693055812
 MonoBehaviour:
   m_ObjectHideFlags: 0
