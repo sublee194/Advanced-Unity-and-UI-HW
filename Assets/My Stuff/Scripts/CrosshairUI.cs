@@ -1,4 +1,5 @@
 using Game.Character;
+using Game.Combat;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -19,6 +20,8 @@ public class CrosshairUI : MonoBehaviour
 
     bool isShooting;
     CrosshairState state;
+
+    public WeaponController wpController;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -44,7 +47,6 @@ public class CrosshairUI : MonoBehaviour
 
         if(controller.CurrentMode == ControlMode.AimMove)
         {
-            Debug.Log($"current mode = {controller.CurrentMode}");
             crosshair.enabled = true;
             if (isShooting)
             {

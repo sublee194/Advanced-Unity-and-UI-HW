@@ -17,6 +17,10 @@ public class WeaponController : MonoBehaviour, IDamageSource
     [SerializeField] float critChance = 0.1f;
     [SerializeField] float critMultiplier = 1.5f;
 
+    private Vector3 screenCenter;
+    public float maxDistance;
+    public LayerMask CrosshairMask;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -25,6 +29,7 @@ public class WeaponController : MonoBehaviour, IDamageSource
         currentMagazine = 5;
         cannotShoot = false;
         cannotReload = false;
+        screenCenter = new Vector3(Screen.width * 0.5f, Screen.height * 0.5f, 0f);
     }
 
     // Update is called once per frame
@@ -60,6 +65,19 @@ public class WeaponController : MonoBehaviour, IDamageSource
         Debug.Log("Start Shoot!");
         cannotReload = true;
         crosshair.ChangeIsShooting();
+        CheckShot();
+    }
+
+    public void CheckShot()
+    {
+        RaycastHit hit;
+        Ray ray = Camera.main.ScreenPointToRay(screenCenter);
+        bool targetInAim = Physics.Raycast(ray, out hit, maxDistance, CrosshairMask);
+
+        if (hit.collider.TryGetComponent<IDamageReceiver>(out var receiver))
+        {
+            DamageManager.InflictDamage(this, receiver);
+        }
     }
 
     public void EndShoot()
@@ -99,8 +117,8 @@ public class WeaponController : MonoBehaviour, IDamageSource
     {
         //這個函式被 Reload_copy animation 的事件呼叫
         Debug.Log("Start Reload");
-        cannotShoot = true;
-    }
+        cannotShoot = true;        
+    }    
 
     public void EndReload()
     {

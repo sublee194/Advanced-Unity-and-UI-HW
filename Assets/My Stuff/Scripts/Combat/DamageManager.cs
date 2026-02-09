@@ -4,9 +4,7 @@ namespace Game.Combat
 {
     public static class DamageManager
     {
-        public static void InflictDamage(
-            IDamageSource source,
-            IDamageReceiver receiver)
+        public static void InflictDamage(IDamageSource source, IDamageReceiver receiver)
         {
             var damage = source.GetDamageValue();
             var defense = receiver.GetDefenseValue();

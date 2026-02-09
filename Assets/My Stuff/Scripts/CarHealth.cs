@@ -28,6 +28,7 @@ public class CarHealth : MonoBehaviour, IDamageReceiver
     public void ReceiveDamage(DamageResult result)
     {
         hp -= result.FinalDamage;
+        Debug.Log($"Damage applied, current hp: {hp}");
 
         if (hp <= 0)
             Die();

@@ -160,6 +160,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   controller: {fileID: 1902638402}
+  wpController: {fileID: 1902638400}
 --- !u!114 &23115595
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10932,6 +10933,10 @@ MonoBehaviour:
   baseDamage: 25
   critChance: 0.1
   critMultiplier: 1.5
+  maxDistance: 50
+  CrosshairMask:
+    serializedVersion: 2
+    m_Bits: 256
 --- !u!143 &1902638401
 CharacterController:
   m_ObjectHideFlags: 0
