@@ -5,9 +5,10 @@ using UnityEngine.UI;
 public class CrosshairUI : MonoBehaviour
 {
     public RawImage crosshair;
-    public Texture idle;
-    public Texture target;
-    public Texture shooting;
+    public Texture texTargetHit;
+    public Texture texTargetMissed;
+    public Texture texTargetInRanged;
+    public Texture texIdle;
 
     private Vector3 screenCenter;
     private Ray ray;
@@ -17,63 +18,94 @@ public class CrosshairUI : MonoBehaviour
     public MyTPController controller;
 
     bool isShooting;
-    
+    CrosshairState state;
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         screenCenter = new Vector3(Screen.width * 0.5f, Screen.height * 0.5f, 0f);
         isShooting = false;
+        state = CrosshairState.Hidden;
     }
 
     // Update is called once per frame
     void Update()
     {
+        CheckState();
+        SetState();
+    }
+
+    public void CheckState()
+    {
         RaycastHit hit;
         Ray ray = Camera.main.ScreenPointToRay(screenCenter);
         bool targetInAim = Physics.Raycast(ray, out hit, maxDistance, CrosshairMask);
 
-        if (controller.CurrentMode == ControlMode.AimMove)
+        if(controller.CurrentMode == ControlMode.AimMove)
         {
+            Debug.Log($"current mode = {controller.CurrentMode}");
             crosshair.enabled = true;
             if (isShooting)
             {
-                SetState(CrosshairState.Shooting);
-            }
-            else if (targetInAim)
-            {
-                SetState(CrosshairState.Target);
+                if(targetInAim)
+                {
+                    state = CrosshairState.TargetHit;
+                }
+                else
+                {
+                    state = CrosshairState.TargetMissed;
+                }
             }
             else
             {
-                SetState(CrosshairState.Idle);
+                if (targetInAim)
+                {
+                    state = CrosshairState.TargetInRanged;
+                }
+                else
+                {
+                    state = CrosshairState.Idle;
+                }
             }
         }
         else
         {
-            crosshair.enabled = false;
+            state = CrosshairState.Hidden;
         }
-        
     }
 
-    public void SetState(CrosshairState state)
+    public void SetState()
     {
         switch (state)
         {
-            case CrosshairState.Shooting:
-                crosshair.texture = shooting;
-                crosshair.color = Color.white;
+            case CrosshairState.Hidden:
+                crosshair.enabled = false;
                 break;
-            case CrosshairState.Target:
-                crosshair.texture = target;
+            case CrosshairState.TargetHit:
+                crosshair.enabled = true;
+                crosshair.texture = texTargetHit;
                 crosshair.color = Color.red;
                 break;
+            case CrosshairState.TargetMissed:
+                crosshair.enabled = true;
+                crosshair.texture = texTargetMissed;
+                crosshair.color = Color.white;
+                break;
+            case CrosshairState.TargetInRanged:
+                crosshair.enabled = true;
+                crosshair.texture = texTargetInRanged;
+                crosshair.color = Color.yellow;
+                break;
             case CrosshairState.Idle:
-                crosshair.texture = idle;
+                crosshair.enabled = true;
+                crosshair.texture = texIdle;
                 crosshair.color = Color.white;
                 break;
         }
     }
+
+    
 
     public void ChangeIsShooting()
     {
@@ -82,16 +114,14 @@ public class CrosshairUI : MonoBehaviour
         else
             isShooting = true;
     }
-
-    
 }
 
 public enum CrosshairState
 {
-    Idle,
-    Target,
-    Shooting
-    //新增 Hidden
-    //Target分成 TargetMissed 和 TargetHit
+    Hidden,
+    TargetHit,
+    TargetMissed,
+    TargetInRanged,
+    Idle,    
 }
 

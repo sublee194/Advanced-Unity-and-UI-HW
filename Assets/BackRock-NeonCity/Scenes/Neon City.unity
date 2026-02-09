@@ -151,9 +151,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   crosshair: {fileID: 1724714794}
-  idle: {fileID: 2800000, guid: 56f8165bc8b0a98419e06f018a808c4c, type: 3}
-  target: {fileID: 2800000, guid: 56f8165bc8b0a98419e06f018a808c4c, type: 3}
-  shooting: {fileID: 2800000, guid: 9ee137293631b9e46b1a401b72b130a4, type: 3}
+  texTargetHit: {fileID: 2800000, guid: 56f433345b1faa64eb50cdb197d34f71, type: 3}
+  texTargetMissed: {fileID: 2800000, guid: 56f433345b1faa64eb50cdb197d34f71, type: 3}
+  texTargetInRanged: {fileID: 2800000, guid: 56f8165bc8b0a98419e06f018a808c4c, type: 3}
+  texIdle: {fileID: 2800000, guid: 56f8165bc8b0a98419e06f018a808c4c, type: 3}
   maxDistance: 50
   CrosshairMask:
     serializedVersion: 2
