@@ -7097,7 +7097,6 @@ GameObject:
   - component: {fileID: 1293312635}
   - component: {fileID: 1293312638}
   - component: {fileID: 1293312636}
-  - component: {fileID: 1293312639}
   - component: {fileID: 1293312640}
   m_Layer: 0
   m_Name: Main Camera
@@ -7298,28 +7297,6 @@ MonoBehaviour:
   mCheckLayer:
     serializedVersion: 2
     m_Bits: 64
---- !u!114 &1293312639
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1293312626}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f849bf56f11bbcb468fad1198c55943d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mFollowPoint: {fileID: 877931436}
-  mFollowPointRef: {fileID: 861340763}
-  mFollowDistance: 3
-  mVerticalLimitUp: 45
-  mVerticalLimitDown: 45
-  mMouseRotateSensitivity: 10
-  followSpeed: 100
-  mCheckLayer:
-    serializedVersion: 2
-    m_Bits: 0
 --- !u!114 &1293312640
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10974,7 +10951,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ac4eeff4c29eca42bd87175e90df4a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tpCamera: {fileID: 1293312639}
   myCamera: {fileID: 1293312630}
   moveSpeed: 10
   rotateSensitivity: 10

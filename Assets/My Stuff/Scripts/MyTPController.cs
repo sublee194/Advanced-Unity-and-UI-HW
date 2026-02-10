@@ -4,7 +4,6 @@ using Game.Character;
 
 public class MyTPController : MonoBehaviour
 {
-    public MyTPCamera tpCamera;
     public Camera myCamera;
     public float moveSpeed;
     public float rotateSensitivity;
@@ -35,7 +34,7 @@ public class MyTPController : MonoBehaviour
         float fV = Input.GetAxis("Vertical"); //回傳 -1 ~ 1
 
         //取得攝影機位置
-        Transform camTransform = tpCamera.transform;
+        Transform camTransform = myCamera.transform;
 
         //取得移動方向
         Vector3 moveDirection = camTransform.right * fH + camTransform.forward * fV;
@@ -59,7 +58,6 @@ public class MyTPController : MonoBehaviour
         }
 
         _cc.Move(moveDirection * moveSpeed * Time.deltaTime);
-        tpCamera.UpdateFollowPt();
 
         if (currentMode == ControlMode.AimMove)
         {
