@@ -25,10 +25,6 @@ namespace InfinityPBR
             if (!Script) return;
             // April 23, 2021 -- I'm pretty sure the serializedObject bits here do nothing at all.
             serializedObject.Update();
-
-            DrawLinkToDocs();
-            Space();
-            
             Header();
             Draw();
             serializedObject.ApplyModifiedProperties();
@@ -40,8 +36,6 @@ namespace InfinityPBR
                 obj = Script;
             EditorUtility.SetDirty(obj);
         }
-
-        protected virtual void DrawLinkToDocs() => LinkToDocs();
 
         protected virtual void BeginChangeCheck() => EditorGUI.BeginChangeCheck();
 

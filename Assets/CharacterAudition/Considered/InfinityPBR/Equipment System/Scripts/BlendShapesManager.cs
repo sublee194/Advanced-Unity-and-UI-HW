@@ -39,19 +39,6 @@ namespace InfinityPBR
         [HideInInspector] public bool showRangeFiles = true;
         [HideInInspector] public bool showPresetFiles = true;
         
-        // Return a List<BlendShapePresetValues> from all blendShapeGameObjects
-        public List<BlendShapeValue> BlendShapeValues()
-        {
-            var values = new List<BlendShapeValue>();
-            foreach(var blendShapeGameObject in blendShapeGameObjects)
-            {
-                foreach (var blendShapeValue in blendShapeGameObject.blendShapeValues)
-                    values.Add(blendShapeValue);
-            }
-
-            return values;
-        }
-        
         public void SetRandomShapeValue(BlendShapeValue value)
         {
             value.value = Random.Range(value.limitMin, value.limitMax);

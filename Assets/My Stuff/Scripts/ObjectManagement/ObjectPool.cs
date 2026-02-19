@@ -6,13 +6,20 @@ using static UnityEngine.Rendering.STP;
 public class ObjectPool 
 {
     private static ObjectPool _instance = null;
-    public static ObjectPool Instance() { return _instance; }
+    public static ObjectPool Instance()
+    {
+        if (_instance == null)
+            _instance = new ObjectPool();
+
+        return _instance;
+    }
 
     private Dictionary<PoolType, Queue<GameObject>> poolMap;
 
     public ObjectPool()
     {
         _instance = this;
+        poolMap = new Dictionary<PoolType, Queue<GameObject>>();
     }
 
     // pre-instantiate 所有 ObjectManager 丟過來的池子裡的東西
@@ -45,7 +52,7 @@ public class ObjectPool
         }
 
         //檢查該池子 (Queue) 還有沒有 prefab 
-        if(poolMap.Count == 0)
+        if(poolMap[poolType].Count == 0)
         {
             Debug.Log($"Pool for {poolType} is empty!");
             return null;

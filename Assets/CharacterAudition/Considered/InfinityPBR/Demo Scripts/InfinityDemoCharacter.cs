@@ -49,9 +49,9 @@ namespace InfinityPBR.Demo
         private bool _randomWait;
         private float _randomSeedChangeSpeed = 1f;
         private float _randomSeedChangePeriod = 1f;
-        protected Vector3 _startPosition;
-        protected Quaternion _startRotation;
-        protected Transform _transform;
+        private Vector3 _startPosition;
+        private Quaternion _startRotation;
+        private Transform _transform;
         
         // Start is called before the first frame update
         public virtual void Start()
@@ -77,7 +77,7 @@ namespace InfinityPBR.Demo
             CheckPlayArea();
         }
 
-        protected virtual void CheckPlayArea()
+        private void CheckPlayArea()
         {
             if (playArea == null) return;
 
@@ -86,14 +86,14 @@ namespace InfinityPBR.Demo
             ResetPositionAndRotation();
         }
 
-        protected virtual void ResetPositionAndRotation()
+        private void ResetPositionAndRotation()
         {
             ResetPosition();
             ResetRotation();
         }
 
-        protected virtual void ResetRotation() => _transform.localRotation = _startRotation;
-        protected virtual void ResetPosition() => _transform.localPosition = _startPosition;
+        private void ResetRotation() => _transform.localRotation = _startRotation;
+        private void ResetPosition() => _transform.localPosition = _startPosition;
 
         IEnumerator Randomize()
         {
@@ -196,15 +196,5 @@ namespace InfinityPBR.Demo
         }
         
         public void InvokeRandomButton(Button[] array) => array[Random.Range(0, array.Length)].onClick.Invoke();
-
-        public virtual void NextMaterial()
-        {
-            
-        }
-
-        public virtual void PreviousMaterial()
-        {
-            
-        }
     }
 }

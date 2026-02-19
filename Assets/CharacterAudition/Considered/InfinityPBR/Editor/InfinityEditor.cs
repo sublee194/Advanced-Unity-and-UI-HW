@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.UI;
 using Object = UnityEngine.Object;
 
 namespace InfinityPBR
@@ -9,75 +11,59 @@ namespace InfinityPBR
     public abstract class InfinityEditor : Editor
     {
         public static Texture2D UnityTexture(string textureName) => EditorGUIUtility.FindTexture(textureName);
-
-        public const string symbolInfo = "ⓘ";
-        public const string symbolX = "✘";
-        public const string symbolCheck = "✔";
-        public const string symbolCheckSquare = "☑";
-        public const string symbolDollar = "$";
-        public const string symbolCent = "¢";
-        public const string symbolCarrotRight = "‣";
-        public const string symbolCarrotLeft = "◄";
-        public const string symbolCarrotUp = "▲";
-        public const string symbolCarrotDown = "▼";
-        public const string symbolDash = "⁃";
-        public const string symbolBulletClosed = "⦿";
-        public const string symbolBulletOpen = "⦾";
-        public const string symbolHeartClosed = "♥";
-        public const string symbolHeartOpen = "♡";
-        public const string symbolStarClosed = "★";
-        public const string symbolStarOpen = "☆";
-        public const string symbolArrowUp = "↑";
-        public const string symbolArrowDown = "↓";
-        public const string symbolRandom = "↬";
-        public const string symbolMusic = "♫";
-        public const string symbolImportant = "‼";
-        public const string symbolCircleArrow = "➲";
-        public const string symbolOneCircleOpen = "➀";
-        public const string symbolPneCircleClosed = "➊";
-        public const string symbolTwoCircleOpen = "➁";
-        public const string symbolTwoCircleClosed = "➋";
-        public const string symbolThreeCircleOpen = "➂";
-        public const string symbolThreeCircleClosed = "➌";
-        public const string symbolFourCircleOpen = "➃";
-        public const string symbolFourCircleClosed = "➍";
-        public const string symbolFiveCircleOpen = "➄";
-        public const string symbolFiveCircleClosed = "➎";
-        public const string symbolSixCircleOpen = "➅";
-        public const string symbolSixCircleClosed = "➏";
-        public const string symbolSevenCircleOpen = "➆";
-        public const string symbolSevenCircleClosed = "➐";
-        public const string symbolEightCircleOpen = "➇";
-        public const string symbolEightCircleClosed = "➑";
-        public const string symbolNineCircleOpen = "➈";
-        public const string symbolNineCircleClosed = "➒";
-        public const string symbolArrowCircleRight = "↺";
-        public const string symbolArrowCircleLeft = "↻";
-        public const string symbolPlusCircle = "⊕";
-        public const string symbolMinusCircle = "⊖";
-        public const string symbolMultiplyCircle = "⊗";
-        public const string symbolDivideCircle = "⊘";
-        public const string symbolEqualCircle = "⊜";
-        public const string symbolRecycle = "♻";
-        public const string symbolWww = "🌎";
-        public const string symbolCircleOpen = "○";
         
-        public static Color inactive = new Color(0.75f, .75f, 0.75f, 1f);
-        public static Color active = new Color(0.6f, 1f, 0.6f, 1f);
-        public static Color active2 = new Color(0.0f, 1f, 0.0f, 1f);
-        public static Color dark = new Color(0.25f, 0.25f, 0.25f, 1f);
-        public static Color mixed = Color.yellow;
-        public static Color red = new Color(1f, 0.25f, 0.25f, 1f);
-        public static Color blue = new Color(0.25f, 0.25f, 1f, 1f);
+        public static string symbolInfo = "ⓘ";
+        public static string symbolX = "✘";
+        public static string symbolCheck = "✔";
+        public static string symbolCheckSquare = "☑";
+        public static string symbolDollar = "$";
+        public static string symbolCent = "¢";
+        public static string symbolCarrotRight = "‣";
+        public static string symbolCarrotLeft = "◄";
+        public static string symbolCarrotUp = "▲";
+        public static string symbolCarrotDown = "▼";
+        public static string symbolDash = "⁃";
+        public static string symbolBulletClosed = "⦿";
+        public static string symbolBulletOpen = "⦾";
+        public static string symbolHeartClosed = "♥";
+        public static string symbolHeartOpen = "♡";
+        public static string symbolStarClosed = "★";
+        public static string symbolStarOpen = "☆";
+        public static string symbolArrowUp = "↑";
+        public static string symbolArrowDown = "↓";
+        public static string symbolRandom = "↬";
+        public static string symbolMusic = "♫";
+        public static string symbolImportant = "‼";
+        public static string symbolCircleArrow = "➲";
+        public static string symbolOneCircleOpen = "➀";
+        public static string symbolPneCircleClosed = "➊";
+        public static string symbolTwoCircleOpen = "➁";
+        public static string symbolTwoCircleClosed = "➋";
+        public static string symbolThreeCircleOpen = "➂";
+        public static string symbolThreeCircleClosed = "➌";
+        public static string symbolFourCircleOpen = "➃";
+        public static string symbolFourCircleClosed = "➍";
+        public static string symbolFiveCircleOpen = "➄";
+        public static string symbolFiveCircleClosed = "➎";
+        public static string symbolSixCircleOpen = "➅";
+        public static string symbolSixCircleClosed = "➏";
+        public static string symbolSevenCircleOpen = "➆";
+        public static string symbolSevenCircleClosed = "➐";
+        public static string symbolEightCircleOpen = "➇";
+        public static string symbolEightCircleClosed = "➑";
+        public static string symbolNineCircleOpen = "➈";
+        public static string symbolNineCircleClosed = "➒";
+        public static string symbolArrowCircleRight = "↺";
+        public static string symbolArrowCircleLeft = "↻";
+        public static string symbolPlusCircle = "⊕";
+        public static string symbolMinusCircle = "⊖";
+        public static string symbolMultiplyCircle = "⊗";
+        public static string symbolDivideCircle = "⊘";
+        public static string symbolEqualCircle = "⊜";
+        public static string symbolRecycle = "♻";
+        public static string symbolWww = "🌎";
+        public static string symbolCircleOpen = "○";
 
-        public static string textMuted = "<color=#777777>";
-        public static string textFaded = "<color=#555555>";
-        public static string textWarning = "<color=#ffd955>";
-        public static string textNormal = "<color=#999999>";
-        public static string textHightlight = "<color=#99ffff>";
-        public static string textError = "<color=#ff5555>";
-        public static string textColorEnd = "</color>";
-        
         /*
         * ----------------------------------------------------------------------------------------------
         * BUTTONS, LABELS, ETC
@@ -89,85 +75,33 @@ namespace InfinityPBR
         {
             Label("", width);
         }
-        
-        
-        // Buttons Group Code
-        // Open / Close button
-        public static bool ButtonOpenClose(string key, bool value = false, bool grabValueFromKey = true)
-        {
-            if (grabValueFromKey)
-                value = GetBool(key);
-            ColorsIf(value, Color.green, Color.black, Color.white, Color.grey);
-            SetBool(key, ButtonToggleEye(value, 25));
-            ResetColor();
-            return GetBool(key);
-        }
-
-        public static bool ButtonOpenClose(bool value)
-        {
-            ColorsIf(value, Color.green, Color.black, Color.white, Color.grey);
-            var newValue = ButtonToggleEye(value, 25);
-            ResetColor();
-            return newValue;
-        }
-        
-        public static bool ButtonToggleEye(bool value, int width)
-        {
-            if (GUILayout.Button(EditorGUIUtility.IconContent("d_ViewToolOrbit On"), GUILayout.Width(width)))
-                return !value;
-            return value;
-        }
 
         // Buttons
-        public static bool ButtonToggle(bool value, string label, int width, bool useColors = false)
+        public static bool ButtonToggle(bool value, string label, int width)
         {
-            if (useColors)
-                ColorsIf(value, Color.green, Color.black, Color.white, Color.grey);
             if (GUILayout.Button(label, GUILayout.Width(width)))
-            {
-                ResetColor();
                 return !value;
-            }
-            ResetColor();
             return value;
         }
         
-        public static bool ButtonToggle(bool value, string label, int width, int height, bool useColors = false)
+        public static bool ButtonToggle(bool value, string label, int width, int height)
         {
-            if (useColors)
-                ColorsIf(value, Color.green, Color.black, Color.white, Color.grey);
             if (GUILayout.Button(label, GUILayout.Width(width), GUILayout.Height(height)))
-            {
-                ResetColor();
                 return !value;
-            }
-            ResetColor();
             return value;
         }
         
-        public static bool ButtonToggle(bool value, string label, string tooltip, int width, bool useColors = false)
+        public static bool ButtonToggle(bool value, string label, string tooltip, int width)
         {
-            if (useColors)
-                ColorsIf(value, Color.green, Color.black, Color.white, Color.grey);
             if (GUILayout.Button(new GUIContent(label, tooltip), GUILayout.Width(width)))
-            {
-                ResetColor();
                 return !value;
-            }
-            ResetColor();
             return value;
         }
         
-        public static bool ButtonToggle(bool value, string label, string tooltip, int width, int height, bool useColors = false)
+        public static bool ButtonToggle(bool value, string label, string tooltip, int width, int height)
         {
-            if (useColors)
-                ColorsIf(value, Color.green, Color.black, Color.white, Color.grey);
             if (GUILayout.Button(new GUIContent(label, tooltip), GUILayout.Width(width), GUILayout.Height(height)))
-            {
-                ResetColor();
                 return !value;
-            }
-            ResetColor();
             return value;
         }
         
@@ -206,34 +140,23 @@ namespace InfinityPBR
             return false;
         }
         
-        public static bool ButtonWordWrap(string label, int width, int height, bool richText = false)
-        {
-            var buttonStyle = new GUIStyle(GUI.skin.button)
-            {
-                wordWrap = true,
-                fixedWidth = width,
-                fixedHeight = height,
-                richText = richText
-            };
-
-            return GUILayout.Button(label, buttonStyle);
-        }
-
         public static bool ButtonBig(string label, int width, int height = 24, int fontSize = 18, bool bold = false)
         {
-            var style = new GUIStyle(EditorStyles.miniButton)
+            GUIStyle style = new GUIStyle(EditorStyles.miniButton)
             {
                 fontSize = fontSize, 
                 fixedHeight = height, 
                 fixedWidth = width,
                 fontStyle = bold ? FontStyle.Bold : FontStyle.Normal
             };
-            
-            return GUILayout.Button(label, style);
+            if (GUILayout.Button(label, style))
+                return true;
+            return false;
         }
 
         public static bool Button(string label)
         {
+            //Debug.Log("Button Name: " + label);
             if (GUILayout.Button(label))
                 return true;
             return false;
@@ -244,22 +167,7 @@ namespace InfinityPBR
             if (colors)
                 BackgroundColor(isOn ? Color.green : Color.grey);
 
-            if (GUILayout.Button(EditorGUIUtility.IconContent("d_ViewToolOrbit On"), GUILayout.Width(25)))
-            {
-                ResetColor();
-                return !isOn;
-            }
-            
-            ResetColor();
-            return isOn;
-        }
-        
-        public static bool EnabledButton(bool isOn, bool colors = true)
-        {
-            if (colors)
-                BackgroundColor(isOn ? Color.green : Color.grey);
-
-            if (GUILayout.Button(isOn ? symbolCheck : symbolDash, GUILayout.Width(25)))
+            if (Button($"{(isOn ? symbolCircleOpen : symbolDash)}", 25))
             {
                 ResetColor();
                 return !isOn;
@@ -283,365 +191,84 @@ namespace InfinityPBR
             return false;
         }
 
-        public static void PingButton(Object moduleObject)
-        {
-            if (Button($"{symbolCircleArrow}", 25))
-                PingObject(moduleObject);
-        }
-
-        public static void PingObject(Object obj) => EditorGUIUtility.PingObject(obj);
-
-        public static void PingObject<T>(string guid) 
-            where T : UnityEngine.Object
-            => PingObject(AssetDatabase.LoadAssetAtPath<T>( AssetDatabase.GUIDToAssetPath(guid) ));
-
-        public static bool PingObject<T>(string[] guids, int index = 0)
-            where T : UnityEngine.Object
-        {
-            if (guids.Length == 0)
-            {
-                Debug.LogWarning("No guids to ping. Returning false.");
-                return false;
-            }
-            if (index >= guids.Length)
-            {
-                Debug.LogWarning("Index out of range, resetting to 0.");
-                index = 0;
-            }
-            
-            PingObject<T>(guids[index]);
-            return true;
-        }
-        
-        /*
-        public static Object GetObject(string objectName, int index = 0) 
-            => AssetDatabase.LoadAssetAtPath<MonoScript>( AssetDatabase.FindAssets(objectName)[index] );
-
-        public static bool PingObjectNamed(string name, int index = 0) 
-            => PingObject(AssetDatabase.FindAssets(name), index);
-            */
-        
-        public static Object GetObjectInProject<T>(string objectName, int index = 0) 
-            where T : UnityEngine.Object
-            => AssetDatabase.LoadAssetAtPath<T>( AssetDatabase.GUIDToAssetPath(AssetDatabase.FindAssets(objectName)[index]) );
-
-        public static bool PingObjectNamed<T>(string name, int index = 0) 
-            where T : UnityEngine.Object
-            => PingObject<T>(AssetDatabase.FindAssets(name), index);
-
-
-        public static void ImportantField(string toolTip = "Required", int fontSize = 18, int width = 20)
-        {
-            ContentColor(Color.yellow);
-            LabelBig($"{symbolCircleArrow}", toolTip, 20, fontSize);
-            ResetColor();
-        }
-        
-        public static void ImportantFieldIf(bool value, string toolTip = "Required", int fontSize = 18, int width = 20)
-        {
-            if (!value) return;
-
-            ImportantField(toolTip, fontSize, width);
-        }
-
-        // Convenience method for the main, larger, menu toolbar, which also uses an EditorPrefs to handle the selected
-        // option
-        public static int ToolbarMenuMain(string[] options, string editorPrefString)
-        {
-            var selected = EditorPrefs.GetInt(editorPrefString, 0);
-            selected = ToolbarMenuMain(options, selected);
-            EditorPrefs.SetInt(editorPrefString, selected);
-            return selected;
-        }
-
-        // Convenience method for the main, larger, menu toolbar
-        public static int ToolbarMenuMain(string[] options, int selected) =>
-            ToolbarMenu(options, selected, 14, true);
-        
-        public static int ToolbarMenuMainTall(string[] options, int selected, int height = 50, int fontSize = 14) =>
-            ToolbarMenu(options, selected, fontSize, true, -1, height);
-        
-        public static int ToolbarMenuMainTall(string[] options, string[] tooltips, int selected, int height = 50, int fontSize = 14) =>
-            ToolbarMenu(options, selected, fontSize, true, -1, height, tooltips);
-        
-        public static int ToolbarMenuMain(string[] options, int selected, int height) =>
-            ToolbarMenu(options, selected, 14, true);
-        
-        // Used for toolbars that select menu panels in the editor scripts
-        public static int ToolbarMenu(string[] options, int selected, int fontSize = 12, bool bold = false, int width = -1, int height = -1, string[] tooltips = null)
-        {
-            var buttonWidth = width / options.Length;
-            var usingTooltips = false;
-            if (tooltips != null)
-            {
-                usingTooltips = tooltips.Length == options.Length;
-            }
-    
-            // Create styles
-            var styleBold = new GUIStyle(GUI.skin.button) { fontSize = fontSize, fontStyle = FontStyle.Bold };
-            var styleRegular = new GUIStyle(GUI.skin.button) { fontSize = fontSize, fontStyle = FontStyle.Normal };
-            
-            // Draw the tool bar
-            StartRow();
-            for (var i = 0; i < options.Length; i++)
-            {
-                var isPressed = (selected == i);
-                var style = bold ? styleBold : styleRegular;
-                var lines = options[i].Split('\n');
-
-                // Draw button
-                if (width > 0 && height > 20)
-                {
-                    if (usingTooltips && GUILayout.Toggle(isPressed, new GUIContent(options[i], tooltips[i]), style, GUILayout.Width(buttonWidth), GUILayout.Height(height)) && !isPressed)
-                        selected = i; // Set the selected option when a button is pressed
-                    else if (!usingTooltips && GUILayout.Toggle(isPressed, options[i], style, GUILayout.Width(buttonWidth), GUILayout.Height(height)) && !isPressed)
-                        selected = i; // Set the selected option when a button is pressed
-                }
-                else if (width > 0 && height <= 20)
-                {
-                    if (usingTooltips && GUILayout.Toggle(isPressed, new GUIContent(options[i], tooltips[i]), style, GUILayout.Width(buttonWidth)) && !isPressed)
-                        selected = i; // Set the selected option when a button is pressed
-                    else if (!usingTooltips && GUILayout.Toggle(isPressed, options[i], style, GUILayout.Width(buttonWidth)) && !isPressed)
-                        selected = i; // Set the selected option when a button is pressed
-                }
-                else if (width < 0 && height > 20)
-                {
-                    if (usingTooltips && GUILayout.Toggle(isPressed, new GUIContent(options[i], tooltips[i]), style, GUILayout.Height(height)) && !isPressed)
-                        selected = i; // Set the selected option when a button is pressed
-                    else if (!usingTooltips && GUILayout.Toggle(isPressed, options[i], style, GUILayout.Height(height)) && !isPressed)
-                        selected = i; // Set the selected option when a button is pressed
-                }
-                else
-                {
-                    if (usingTooltips && GUILayout.Toggle(isPressed, new GUIContent(options[i], tooltips[i]), style) && !isPressed)
-                        selected = i; // Set the selected option when a button is pressed
-                    else if (!usingTooltips && GUILayout.Toggle(isPressed, options[i], style) && !isPressed)
-                        selected = i; // Set the selected option when a button is pressed
-                }
-
-            }
-            EndRow();
-            
-            return selected;
-        }
-
-        
-        // Used for toolbars that select options for a value
-        public static int ToolbarOptions(string[] options, int selected, bool offColorBlack = true, int fontSize = 12, bool bold = false, int width = -1)
-        {
-            // Cache original colors
-            var originalBackgroundColor = GUI.backgroundColor;
-            var originalContentColor = GUI.contentColor;
-            
-            var buttonWidth = width / options.Length;
-            
-            // Draw the tool bar
-            StartRow();
-            for (var i = 0; i < options.Length; i++)
-            {
-                // Create style
-                var style = new GUIStyle(GUI.skin.button);
-                style.fontSize = fontSize;
-                if (bold)
-                    style.fontStyle = FontStyle.Bold;
-
-                // Gather important data
-                var isPressed = (selected == i);
-
-                // Update Colors
-                GUI.contentColor = isPressed ? Color.white : Color.white; // Yes they're the same!
-                var offColor = offColorBlack ? Color.black : Color.white;
-                GUI.backgroundColor = isPressed ? new Color(0.0f, 1.0f, 1.0f, 1.0f) : offColor;
-                
-                // Draw button
-                if (width > 0)
-                {
-                    if (GUILayout.Toggle(isPressed, options[i], style, GUILayout.Width(buttonWidth)) && !isPressed)
-                        selected = i; // Set the selected option when a button is pressed
-                }
-                else
-                {
-                    if (GUILayout.Toggle(isPressed, options[i], style) && !isPressed)
-                        selected = i; // Set the selected option when a button is pressed
-                }
-                
-            }
-            EndRow();
-            
-            // Reset colors
-            GUI.backgroundColor = originalBackgroundColor;
-            GUI.contentColor = originalContentColor;
-            
-            return selected;
-        }
-        
-        public static int Toolbar(string[] strings, int value, int width = -1, int fontSize = 12, bool bold = false) 
-        {
-            var style = new GUIStyle(GUI.skin.button);
-            style.fontSize = fontSize;
-            if (bold)
-                style.fontStyle = FontStyle.Bold;
-            
-            return width < 0 
-                ? GUILayout.Toolbar(value, strings, style) 
-                : GUILayout.Toolbar(value, strings, style, GUILayout.Width(width));
-        }
-        
-        public static T Toolbar<T>(T enumValue, int width = -1, int fontSize = 12, bool bold = false) where T : Enum
-        {
-            var strings = Enum.GetNames(typeof(T));
-            var value = Convert.ToInt32(enumValue);
-
-            var style = new GUIStyle(GUI.skin.button)
-            {
-                fontSize = fontSize
-            };
-            
-            if (bold) style.fontStyle = FontStyle.Bold;
-
-            value = width < 0 
-                ? GUILayout.Toolbar(value, strings, style) 
-                : GUILayout.Toolbar(value, strings, style, GUILayout.Width(width));
-
-            return (T)Enum.ToObject(typeof(T), value);
-        }
-
-
-        public static void Header1(string label, bool richText = false) => LabelBig(label, 24, true, richText);
-        public static void Header1(string label, string toolTip, int width, bool richText = false) => LabelBig(label, toolTip, width, 24, true, richText);
-        public static void Header1(string label, int width, bool richText = false) => LabelBig(label, width, 24, true, richText);
-        
-        public static void Header2(string label, bool richText = false) => LabelBig(label, 18, true, richText);
-        public static void Header2(string label, string toolTip, int width, bool richText = false) => LabelBig(label, toolTip, width, 18, true, richText);
-        public static void Header2(string label, int width, bool richText = false) => LabelBig(label, width, 18, true, richText);
-        
-        public static void Header3(string label, bool richText = false) => LabelBig(label, 14, true, richText);
-        public static void Header3(string label, string toolTip, int width, bool richText = false) => LabelBig(label, toolTip, width, 14, true, richText);
-        public static void Header3(string label, int width, bool richText = false) => LabelBig(label, width, 14, true, richText);
+        public static int Toolbar(string[] strings, int value, int width = -1) => width < 0 
+            ? GUILayout.Toolbar(value, strings) 
+            : GUILayout.Toolbar(value, strings, GUILayout.Width(width));
 
         // Label Fields
-        public static void LabelBig(string label, int fontSize = 18, bool bold = false, bool richText = false)
+        public static void LabelBig(string label, int fontSize = 18, bool bold = false)
         {
             GUIStyle style = new GUIStyle(bold ? EditorStyles.boldLabel : EditorStyles.label);
             style.fontSize = fontSize;
-            if (richText) style.richText = true;
             EditorGUILayout.LabelField(label, style, GUILayout.Height(fontSize));
         }
 
-        public static void LabelBig(string label, int width, int fontSize = 18, bool bold = false, bool richText = false)
+        public static void LabelBig(string label, int width, int fontSize = 18, bool bold = false)
         {
             GUIStyle style = new GUIStyle(bold ? EditorStyles.boldLabel : EditorStyles.label);
             style.fontSize = fontSize;
-            if (richText) style.richText = true;
             EditorGUILayout.LabelField(label, style, GUILayout.Width(width), GUILayout.Height(fontSize));
         }
         
-        public static void LabelBig(string label, string tooltip, int width, int fontSize = 18, bool bold = false, bool richText = false)
+        public static void LabelBig(string label, string tooltip, int width, int fontSize = 18, bool bold = false)
         {
             GUIStyle style = new GUIStyle(bold ? EditorStyles.boldLabel : EditorStyles.label);
             style.fontSize = fontSize;
-            if (richText) style.richText = true;
             EditorGUILayout.LabelField(new GUIContent(label, tooltip), style, GUILayout.Width(width), GUILayout.Height(fontSize));
         }
         
-        public static void Label(string label, bool bold = false, bool wordwrap = false, bool richText = false)
+        public static void Label(string label, bool bold = false, bool wordwrap = false)
         {
             GUIStyle style = new GUIStyle(bold ? EditorStyles.boldLabel : EditorStyles.label);
             if (wordwrap) style.wordWrap = true;
-            if (richText) style.richText = true;
             EditorGUILayout.LabelField(label, style);
         }
         
-        public static void LabelGrey(string label, bool bold = false, bool wordwrap = false, bool richText = false)
+        public static void LabelGrey(string label, bool bold = false, bool wordwrap = false)
         {
             ContentColor(Color.grey);
             GUIStyle style = new GUIStyle(bold ? EditorStyles.boldLabel : EditorStyles.label);
             if (wordwrap) style.wordWrap = true;
-            if (richText) style.richText = true;
             EditorGUILayout.LabelField(label, style);
             ContentColor(Color.white);
         }
         
-        public static void LabelGrey(string label, int width, bool bold = false, bool wordwrap = false, bool richText = false)
+        public static void LabelGrey(string label, int width, bool bold = false, bool wordwrap = false)
         {
             ContentColor(Color.grey);
             GUIStyle style = new GUIStyle(bold ? EditorStyles.boldLabel : EditorStyles.label);
             if (wordwrap) style.wordWrap = true;
-            if (richText) style.richText = true;
             EditorGUILayout.LabelField(label, style, GUILayout.Width(width));
             ContentColor(Color.white);
         }
         
-        public static void LabelSized(string label, int fontSize = 18, bool bold = false, bool richText = false)
+        public static void Label(string label, int width, bool bold = false, bool wordwrap = false)
         {
             GUIStyle style = new GUIStyle(bold ? EditorStyles.boldLabel : EditorStyles.label);
-            style.fontSize = fontSize;
-            if (richText) style.richText = true;
-            EditorGUILayout.LabelField(label, style);
-        }
-        
-        public static void LabelSized(string label, string tooltip, int fontSize = 18, bool bold = false, bool richText = false)
-        {
-            GUIStyle style = new GUIStyle(bold ? EditorStyles.boldLabel : EditorStyles.label);
-            style.fontSize = fontSize;
-            if (richText) style.richText = true;
-            EditorGUILayout.LabelField(new GUIContent(label, tooltip), style);
-        }
-        
-        public static void LabelSized(string label, int width, int fontSize = 18, bool bold = false, bool richText = false)
-        {
-            GUIStyle style = new GUIStyle(bold ? EditorStyles.boldLabel : EditorStyles.label);
-            style.fontSize = fontSize;
-            if (richText) style.richText = true;
+            if (wordwrap) style.wordWrap = true;
             EditorGUILayout.LabelField(label, style, GUILayout.Width(width));
         }
         
-        public static void LabelSized(string label, string tooltip, int width, int fontSize = 18, bool bold = false, bool richText = false)
-        {
-            GUIStyle style = new GUIStyle(bold ? EditorStyles.boldLabel : EditorStyles.label);
-            style.fontSize = fontSize;
-            if (richText) style.richText = true;
-            EditorGUILayout.LabelField(new GUIContent(label, tooltip), style, GUILayout.Width(width));
-        }
-
-        public static void Label(string label, int width, bool bold = false, bool wordwrap = false, bool richText = false)
+        public static void Label(string label, string tooltip, bool bold = false, bool wordwrap = false)
         {
             GUIStyle style = new GUIStyle(bold ? EditorStyles.boldLabel : EditorStyles.label);
             if (wordwrap) style.wordWrap = true;
-            if (richText) style.richText = true;
-            EditorGUILayout.LabelField(label, style, GUILayout.Width(width));
-        }
-        
-        public static void Label(string label, int width, int height, bool bold = false, bool wordwrap = false, bool richText = false)
-        {
-            GUIStyle style = new GUIStyle(bold ? EditorStyles.boldLabel : EditorStyles.label);
-            if (wordwrap) style.wordWrap = true;
-            if (richText) style.richText = true;
-            EditorGUILayout.LabelField(label, style, GUILayout.Width(width), GUILayout.Height(height));
-        }
-        
-        public static void Label(string label, string tooltip, bool bold = false, bool wordwrap = false, bool richText = false)
-        {
-            GUIStyle style = new GUIStyle(bold ? EditorStyles.boldLabel : EditorStyles.label);
-            if (wordwrap) style.wordWrap = true;
-            if (richText) style.richText = true;
             EditorGUILayout.LabelField(new GUIContent(label, tooltip), style);
         }
         
-        public static void Label(string label, string tooltip, int width, bool bold = false, bool wordwrap = false, bool richText = false)
+        public static void Label(string label, string tooltip, int width, bool bold = false, bool wordwrap = false)
         {
             GUIStyle style = new GUIStyle(bold ? EditorStyles.boldLabel : EditorStyles.label);
             if (wordwrap) style.wordWrap = true;
-            if (richText) style.richText = true;
             EditorGUILayout.LabelField(new GUIContent(label, tooltip), style, GUILayout.Width(width));
         }
         
         // Sliders
 
-        public static int SliderInt(int value, int min, int max) => Mathf.RoundToInt(EditorGUILayout.Slider(value, min, max));
-        public static int SliderInt(string label, int value, int min, int max) => Mathf.RoundToInt(EditorGUILayout.Slider(label, value, min, max));
-        public static int SliderInt(int value, int min, int max, int width) => Mathf.RoundToInt(EditorGUILayout.Slider(value, min, max, GUILayout.Width(width)));
-        public static int SliderInt(string label, int value, int min, int max, int width) => Mathf.RoundToInt(EditorGUILayout.Slider(label, value, min, max, GUILayout.Width(width)));
+        public static int SliderInt(int value, int min, int max) => Mathf.RoundToInt(EditorGUILayout.Slider((float) value, (float) min, (float) max));
+        public static int SliderInt(string label, int value, int min, int max) => Mathf.RoundToInt(EditorGUILayout.Slider(label, (float) value, (float) min, (float) max));
+        public static int SliderInt(int value, int min, int max, int width) => Mathf.RoundToInt(EditorGUILayout.Slider((float) value, (float) min, (float) max, GUILayout.Width(width)));
+        public static int SliderInt(string label, int value, int min, int max, int width) => Mathf.RoundToInt(EditorGUILayout.Slider(label, (float) value, (float) min, (float) max, GUILayout.Width(width)));
         
         public static float SliderFloat(float value, float min, float max) => EditorGUILayout.Slider(value, min, max);
         public static float SliderFloat(string label, float value, float min, float max) => EditorGUILayout.Slider(label, value, min, max);
@@ -668,49 +295,56 @@ namespace InfinityPBR
         {
             if (bold)
                 return EditorGUILayout.TextField(text, EditorStyles.boldLabel);
-            return EditorGUILayout.TextField(text);
+            else
+                return EditorGUILayout.TextField(text);
         }
         
         public static string TextField(string label, string text, bool bold = false)
         {
             if (bold)
                 return EditorGUILayout.TextField(label, text, EditorStyles.boldLabel);
-            return EditorGUILayout.TextField(label, text);
+            else
+                return EditorGUILayout.TextField(label, text);
         }
         
         public static string TextField(string label, string text, int width, bool bold = false)
         {
             if (bold)
                 return EditorGUILayout.TextField(label, text, EditorStyles.boldLabel, GUILayout.Width(width));
-            return EditorGUILayout.TextField(label, text, GUILayout.Width(width));
+            else
+                return EditorGUILayout.TextField(label, text, GUILayout.Width(width));
         }
         
         public static string TextField(string label, string tooltip, string text, bool bold = false)
         {
             if (bold)
                 return EditorGUILayout.TextField(new GUIContent(label, tooltip), text, EditorStyles.boldLabel);
-            return EditorGUILayout.TextField(new GUIContent(label, tooltip), text);
+            else
+                return EditorGUILayout.TextField(new GUIContent(label, tooltip), text);
         }
         
         public static string TextField(string label, string tooltip, string text, int width, bool bold = false)
         {
             if (bold)
                 return EditorGUILayout.TextField(new GUIContent(label, tooltip), text, EditorStyles.boldLabel, GUILayout.Width(width));
-            return EditorGUILayout.TextField(new GUIContent(label, tooltip), text, GUILayout.Width(width));
+            else
+                return EditorGUILayout.TextField(new GUIContent(label, tooltip), text, GUILayout.Width(width));
         }
         
         public static string TextField(string text, int width, bool bold = false)
         {
             if (bold)
                 return EditorGUILayout.TextField(text, EditorStyles.boldLabel, GUILayout.Width(width));
-            return EditorGUILayout.TextField(text, GUILayout.Width(width));
+            else
+                return EditorGUILayout.TextField(text, GUILayout.Width(width));
         }
         
         public static string TextField(string text, int width, int height, bool bold = false)
         {
             if (bold)
                 return EditorGUILayout.TextField(text, EditorStyles.boldLabel, GUILayout.Width(width), GUILayout.Height(height));
-            return EditorGUILayout.TextField(text, GUILayout.Width(width), GUILayout.Height(height));
+            else
+                return EditorGUILayout.TextField(text, GUILayout.Width(width), GUILayout.Height(height));
         }
 
         // Delayed Text Fields
@@ -718,42 +352,48 @@ namespace InfinityPBR
         {
             if (bold)
                 return EditorGUILayout.DelayedTextField(text, EditorStyles.boldLabel);
-            return EditorGUILayout.DelayedTextField(text);
+            else
+                return EditorGUILayout.DelayedTextField(text);
         }
         
         public static string DelayedText(string label, string text, bool bold = false)
         {
             if (bold)
                 return EditorGUILayout.DelayedTextField(label, text, EditorStyles.boldLabel);
-            return EditorGUILayout.DelayedTextField(label, text);
+            else
+                return EditorGUILayout.DelayedTextField(label, text);
         }
         
         public static string DelayedText(string label, string text, int width, bool bold = false)
         {
             if (bold)
                 return EditorGUILayout.DelayedTextField(label, text, EditorStyles.boldLabel, GUILayout.Width(width));
-            return EditorGUILayout.DelayedTextField(label, text, GUILayout.Width(width));
+            else
+                return EditorGUILayout.DelayedTextField(label, text, GUILayout.Width(width));
         }
         
         public static string DelayedText(string label, string tooltip, string text, bool bold = false)
         {
             if (bold)
                 return EditorGUILayout.DelayedTextField(new GUIContent(label, tooltip), text, EditorStyles.boldLabel);
-            return EditorGUILayout.DelayedTextField(new GUIContent(label, tooltip), text);
+            else
+                return EditorGUILayout.DelayedTextField(new GUIContent(label, tooltip), text);
         }
         
         public static string DelayedText(string label, string tooltip, string text, int width, bool bold = false)
         {
             if (bold)
                 return EditorGUILayout.DelayedTextField(new GUIContent(label, tooltip), text, EditorStyles.boldLabel, GUILayout.Width(width));
-            return EditorGUILayout.DelayedTextField(new GUIContent(label, tooltip), text, GUILayout.Width(width));
+            else
+                return EditorGUILayout.DelayedTextField(new GUIContent(label, tooltip), text, GUILayout.Width(width));
         }
         
         public static string DelayedText(string text, int width, bool bold = false)
         {
             if (bold)
                 return EditorGUILayout.DelayedTextField(text, EditorStyles.boldLabel, GUILayout.Width(width));
-            return EditorGUILayout.DelayedTextField(text, GUILayout.Width(width));
+            else
+                return EditorGUILayout.DelayedTextField(text, GUILayout.Width(width));
         }
 
         // Bool Checkboxes
@@ -774,19 +414,6 @@ namespace InfinityPBR
 
         public static bool Check(bool value, int width) => EditorGUILayout.Toggle(value, GUILayout.Width(width));
 
-        // Basic FloatSlider without label or tooltip
-        public static float FloatSlider(float value, float minValue, float maxValue) => EditorGUILayout.Slider(value, minValue, maxValue);
-        public static float FloatSlider(float value, float minValue, float maxValue, int width) => EditorGUILayout.Slider(value, minValue, maxValue, GUILayout.Width(width));
-
-// FloatSlider with just a label
-        public static float FloatSlider(string label, float value, float minValue, float maxValue) => EditorGUILayout.Slider(label, value, minValue, maxValue);
-        public static float FloatSlider(string label, float value, float minValue, float maxValue, int width) => EditorGUILayout.Slider(label, value, minValue, maxValue, GUILayout.Width(width));
-
-// FloatSlider with both label and tooltip
-        public static float FloatSlider(string label, string tooltip, float value, float minValue, float maxValue) => EditorGUILayout.Slider(new GUIContent(label, tooltip), value, minValue, maxValue);
-        public static float FloatSlider(string label, string tooltip, float value, float minValue, float maxValue, int width) => EditorGUILayout.Slider(new GUIContent(label, tooltip), value, minValue, maxValue, GUILayout.Width(width));
-
-        
         // Float field
         public static float Float(string label, float value) => EditorGUILayout.FloatField(label, value);
         public static float Float(string label, float value, int width) => EditorGUILayout.FloatField(label, value, GUILayout.Width(width));
@@ -796,23 +423,11 @@ namespace InfinityPBR
         public static float Float(string label, string tooltip, float value) => EditorGUILayout.FloatField(new GUIContent(label, tooltip), value);
         public static float Float(string label, string tooltip, float value, int width) => EditorGUILayout.FloatField(new GUIContent(label, tooltip), value, GUILayout.Width(width));
 
-        public static float DelayedFloat(string label, float value) => EditorGUILayout.DelayedFloatField(label, value);
-        public static float DelayedFloat(string label, float value, int width) => EditorGUILayout.DelayedFloatField(label, value, GUILayout.Width(width));
-        public static float DelayedFloat(float value) => EditorGUILayout.DelayedFloatField(value);
-        public static float DelayedFloat(float value, int width) => EditorGUILayout.DelayedFloatField(value, GUILayout.Width(width));
-        public static float DelayedFloat(string label, string tooltip, float value) => EditorGUILayout.DelayedFloatField(new GUIContent(label, tooltip), value);
-        public static float DelayedFloat(string label, string tooltip, float value, int width) => EditorGUILayout.DelayedFloatField(new GUIContent(label, tooltip), value, GUILayout.Width(width));
-        
         // Int Field
         public static int Int(string label, int value) => EditorGUILayout.IntField(label, value);
         public static int Int(string label, int value, int width) => EditorGUILayout.IntField(label, value, GUILayout.Width(width));
         public static int Int(int value) => EditorGUILayout.IntField(value);
         public static int Int(int value, int width) => EditorGUILayout.IntField(value, GUILayout.Width(width));
-        
-        public static int DelayedInt(string label, int value) => EditorGUILayout.DelayedIntField(label, value);
-        public static int DelayedInt(string label, int value, int width) => EditorGUILayout.DelayedIntField(label, value, GUILayout.Width(width));
-        public static int DelayedInt(int value) => EditorGUILayout.DelayedIntField(value);
-        public static int DelayedInt(int value, int width) => EditorGUILayout.DelayedIntField(value, GUILayout.Width(width));
 
         // Object Field
         public static Object Object(Object obj, Type objType, bool allowSceneObjects = false) => EditorGUILayout.ObjectField(obj, objType, allowSceneObjects);
@@ -820,15 +435,10 @@ namespace InfinityPBR
         public static Object Object(Object obj, Type objType, string label, int width, bool allowSceneObjects = false) => EditorGUILayout.ObjectField(label, obj, objType, allowSceneObjects, GUILayout.Width(width));
         public static Object Object(Object obj, Type objType, int width, bool allowSceneObjects = false) => EditorGUILayout.ObjectField(obj, objType, allowSceneObjects, GUILayout.Width(width));
 
-        
         // Color Select
         public static Color ColorField(Color color, int width) => EditorGUILayout.ColorField(color, GUILayout.Width(width));
         public static Color ColorField(Color color) => EditorGUILayout.ColorField(color);
 
-        // Vector 4 Field
-        public static Vector4 Vector4Field(Vector4 value, string label = "") => EditorGUILayout.Vector4Field(label, value);
-        public static Vector4 Vector4Field(Vector4 value, int width, string label = "") => EditorGUILayout.Vector4Field(label, value, GUILayout.Width(width));
-        
         // Vector 3 Field
         public static Vector3 Vector3Field(Vector3 value, string label = "") => EditorGUILayout.Vector3Field(label, value);
         public static Vector3 Vector3Field(Vector3 value, int width, string label = "") => EditorGUILayout.Vector3Field(label, value, GUILayout.Width(width));
@@ -838,49 +448,27 @@ namespace InfinityPBR
         public static Vector2 Vector2Field(Vector2 value, int width, string label = "") => EditorGUILayout.Vector2Field(label, value, GUILayout.Width(width));
 
         // Popup
-        public static int Popup(int index, string[] options) => Popup(index, options, -1);
+        public static int Popup(int index, string[] options)
+        {
+            return EditorGUILayout.Popup(index, options);
+        }
         
-        public static int Popup(int index, string[] options, int width, int height = -1)
+        public static int Popup(int index, string[] options, int width)
         {
             if (options == null) return default;
             if (options.Length == 0) return default;
-            if (width < 0 && height < 0) return EditorGUILayout.Popup(index, options);
-            if (height < 0) return EditorGUILayout.Popup(index, options, GUILayout.Width(width));
-
-            // Create a custom popup with a scroll view
-            index = Mathf.Clamp(index, 0, options.Length - 1);
-            var rect = GUILayoutUtility.GetRect(new GUIContent(options[index]), EditorStyles.popup, GUILayout.Width(width));
-            if (!EditorGUI.DropdownButton(rect, new GUIContent(options[index]), FocusType.Keyboard, EditorStyles.popup))
-                return index;
-            
-            var mousePosition = Event.current.mousePosition;
-            var listRect = new Rect(mousePosition.x, mousePosition.y, width, height);
-            var newIndex = EditorGUI.Popup(listRect, index, options);
-            if (newIndex == index) return index;
-            
-            index = newIndex;
-            GUI.changed = true;
-            return index;
+            return EditorGUILayout.Popup(index, options, GUILayout.Width(width));
         }
         
         public static int Popup(string label, int index, string[] options)
         {
-            if (options == null) return default;
-            if (options.Length == 0) return default;
             return EditorGUILayout.Popup(label, index, options);
         }
         
         public static int Popup(string label, int index, string[] options, int width)
         {
-            if (options == null) return default;
-            if (options.Length == 0) return default;
             return EditorGUILayout.Popup(label, index, options, GUILayout.Width(width));
         }
-        
-        // Enum Popup
-        public static Enum EnumPopup(Enum selected) => EditorGUILayout.EnumPopup(selected);
-
-        public static Enum EnumPopup(Enum selected, int width) => EditorGUILayout.EnumPopup(selected, GUILayout.Width(width));
         
         /*
         * ----------------------------------------------------------------------------------------------
@@ -890,157 +478,12 @@ namespace InfinityPBR
         
         // Boxes
         public static void StartVerticalBox() => EditorGUILayout.BeginVertical(EditorStyles.helpBox);
-
-        public static void StartVerticalBox(int width) => EditorGUILayout.BeginVertical(EditorStyles.helpBox, GUILayout.Width(width));
-        
-        public static bool StartVerticalBoxSection(bool value, string label, int fontSize = 14, bool bold = true, string tooltip = "")
-        {
-            // Create a custom style for the box.
-            GUIStyle boxStyle = new GUIStyle(EditorStyles.helpBox);
-            boxStyle.padding = new RectOffset(0, 0, 0, 0);  // Remove padding so everything is flush.
-            
-            var headerStyle = new GUIStyle
-            {
-                normal =
-                {
-                    textColor = value ? Color.white : Color.white,
-                    background = MakeTex(2, 2, 
-                        value 
-                            ? new Color(1f,1f,1f, 0.25f) 
-                            : new Color(1f, 1f, 1f, 0.0f)),
-                },
-                fontSize = fontSize,
-                fontStyle = bold ? FontStyle.Bold : FontStyle.Normal,
-                padding = new RectOffset(0, 0, 3, 3),
-                border = new RectOffset(5, 5, 0, 0), // No border
-                margin = new RectOffset(1, 1, 1, 0), // No margin
-                overflow = new RectOffset(0, 0, 0, 0), // No overflow
-                clipping = TextClipping.Clip, // Clip the text to the button's area
-                alignment = TextAnchor.MiddleCenter, // Center the text both horizontally and vertically
-            };
-            
-            // Begin a new vertical box with the custom style.
-            EditorGUILayout.BeginVertical(boxStyle);
-
-            // Add a button as the header.
-            var newValue = value;
-            if (string.IsNullOrEmpty(tooltip))
-            {
-                if (GUILayout.Button(new GUIContent($" {label}", EditorGUIUtility.IconContent("d_ViewToolOrbit On").image), headerStyle))
-                    newValue = !value;
-            }
-            else
-            {
-                if (GUILayout.Button(new GUIContent($" {label}", EditorGUIUtility.IconContent("d_ViewToolOrbit On").image, tooltip), headerStyle))
-                    newValue = !value;
-            }
-            
-            ResetColor();
-
-            return newValue;
-        }
-
-        public static Texture2D ScaleTexture(Texture2D source, int maxSize)
-        {
-            if (source == null)
-                return default;
-            
-            // Determine whether the width or height is the larger dimension
-            bool widthIsLarger = source.width > source.height;
-
-            // Compute the target width and height, maintaining aspect ratio
-            int targetWidth = widthIsLarger ? maxSize : (int)(source.width / (source.height / (float)maxSize));
-            int targetHeight = !widthIsLarger ? maxSize : (int)(source.height / (source.width / (float)maxSize));
-
-            Texture2D result = new Texture2D(targetWidth, targetHeight, source.format, false);
-            Color[] rpixels = result.GetPixels(0);
-            float incX = ((float)1 / source.width) * ((float)source.width / targetWidth);
-            float incY = ((float)1 / source.height) * ((float)source.height / targetHeight);
-            for (int px = 0; px < rpixels.Length; px++)
-            {
-                rpixels[px] = source.GetPixelBilinear(incX * ((float)px % targetWidth),
-                    incY * Mathf.Floor(px / targetWidth));
-            }
-            result.SetPixels(rpixels, 0);
-            result.Apply();
-            return result;
-        }
-
-        
-        private static Texture2D MakeBorderTex(int width, int height, Color color, int thickness)
-        {
-            Color[] pix = new Color[width * height];
-
-            for (int i = 0; i < pix.Length; i++)
-            {
-                if (i < (width * thickness) || // top
-                    i > (width * height) - (width * thickness) || // bottom
-                    i % width < thickness || // left
-                    i % width > width - thickness - 1)  // right
-                {
-                    pix[i] = color;
-                }
-                else
-                {
-                    pix[i] = Color.clear;
-                }
-            }
-
-            Texture2D result = new Texture2D(width, height);
-            result.SetPixels(pix);
-            result.Apply();
-
-            return result;
-        }
-
-
-        static Texture2D MakeTex(int width, int height, Color col)
-        {
-            Color[] pix = new Color[width * height];
-            for (int i = 0; i < pix.Length; i++)
-                pix[i] = col;
-            Texture2D result = new Texture2D(width, height);
-            result.SetPixels(pix);
-            result.Apply();
-            return result;
-        }
-        
-        public static bool ButtonSectionBig(bool value, string label, int width, int fontSize = 14, bool bold = true)
-        {
-            // Cache original colors
-            var originalBackgroundColor = GUI.backgroundColor;
-            var originalContentColor = GUI.contentColor;
-            
-            // Create style
-            var style = new GUIStyle(GUI.skin.button);
-            style.fontSize = fontSize;
-            if (bold)
-                style.fontStyle = FontStyle.Bold;
-
-            // Update Colors
-            GUI.contentColor = value ? Color.white : Color.white; // Yes they're the same!
-            GUI.backgroundColor = value ? new Color(0.0f, 1.0f, 0.0f, 1.0f) : Color.white;
-
-            var newValue = value;
-            
-            // Draw button
-            if (GUILayout.Button(new GUIContent($" {label}", EditorGUIUtility.IconContent("d_ViewToolOrbit On").image), style, GUILayout.Width(width)))
-                newValue = !value; // Set the selected option when a button is pressed
-            
-            // Reset colors
-            GUI.backgroundColor = originalBackgroundColor;
-            GUI.contentColor = originalContentColor;
-
-            return newValue;
-        }
-        
         public static void EndVerticalBox() => EditorGUILayout.EndVertical();
         public static void MessageBox(string content, MessageType messageType = MessageType.None) => EditorGUILayout.HelpBox(content, messageType);
 
         // Vertical
         public static void StartVertical() => EditorGUILayout.BeginVertical();
-        public static void StartVertical(int width) => EditorGUILayout.BeginVertical(GUILayout.Width(width));
-        public static void EndVertical() => EditorGUILayout.EndVertical();
+        public virtual void EndVertical() => EditorGUILayout.EndVertical();
         
         // Horizontal
         public static void StartRow() => EditorGUILayout.BeginHorizontal();
@@ -1079,7 +522,6 @@ namespace InfinityPBR
         
         // Other
         public static bool HasKey(string name) => EditorPrefs.HasKey(name);
-        public static void DeleteKey(string name) => EditorPrefs.DeleteKey(name);
 
         /*
         * ----------------------------------------------------------------------------------------------
@@ -1215,93 +657,12 @@ namespace InfinityPBR
             DrawDefaultInspector();
         }
 
-        public static void LinkToDocs(string url = "https://infinitypbr.gitbook.io/infinity-pbr/", string label = "Docs & Tutorials")
+        protected void LinkToDocs(string url)
         {
             BackgroundColor(Color.cyan);
-            if (Button($"{label} {symbolCircleArrow}"
-                    , "This will open the support documentation page in a web browser."))
+            if (Button($"Docs & Tutorials {symbolCircleArrow}", "This will open the support documentation page in a web browser."))
                 Application.OpenURL(url);
             ResetColor();
         }
-        
-        public static bool CanMoveUp(int index, int total) => index != 0;
-        
-        public static bool CanMoveDown(int index, int total) => index != total - 1;
-        
-        /*
-        * ----------------------------------------------------------------------------------------------
-        * LIST ORDERING ETC
-        * ----------------------------------------------------------------------------------------------
-        */
-
-        /// <summary>
-        /// Moves the item to a new location in the list, by moveValue
-        /// </summary>
-        /// <param name="thisList"></param>
-        /// <param name="index"></param>
-        /// <param name="moveValue"></param>
-        public static void MoveItem<T>(List<T> thisList, int index, int moveValue)
-        {
-            if (index + moveValue < 0) return;
-            if (index + moveValue >= thisList.Count) return;
-
-            MoveItemTo(thisList, index, index + moveValue);
-        }
-
-        public static void MoveItemUp<T>(List<T> thisList, int index) => MoveItem(thisList, index, -1);
-        public static void MoveItemDown<T>(List<T> thisList, int index) => MoveItem(thisList, index, 1);
-
-        /// <summary>
-        /// Moves the item to a new location in the List() as specified
-        /// </summary>
-        /// <param name="thisList"></param>
-        /// <param name="fromIndex"></param>
-        /// <param name="toIndex"></param>
-        public static void MoveItemTo<T>(List<T> thisList, int fromIndex, int toIndex)
-        {
-            if (toIndex < 0) return;
-            if (toIndex >= thisList.Count) return;
-            
-            var item = thisList[fromIndex];
-            thisList.RemoveAt(fromIndex);
-            thisList.Insert(toIndex, item);
-        }
-        
-        // Animation Curve
-        public static AnimationCurve Curve(AnimationCurve curve, float handlePos = -1f, int width = 0, int height = 100)
-        {
-            var curveRect = GUILayoutUtility.GetRect(width, height, GUILayout.ExpandWidth(width == 0));
-            curve = EditorGUI.CurveField(curveRect, curve, Color.red, new Rect(0, 0, 1, 1));
-            
-            if (handlePos < 0)
-                return curve;
-
-            var lastRect = GUILayoutUtility.GetLastRect();
-            //lastRect.x += EditorGUIUtility.labelWidth;
-            //lastRect.width -= EditorGUIUtility.labelWidth;
-
-            Handles.color = Color.white;
-            var x = lastRect.x + lastRect.width * handlePos;
-            Handles.DrawLine(new Vector3(x, lastRect.y), new Vector3(x, lastRect.y + lastRect.height));
-            
-            return curve;
-        }
-        
-        
-        public static void DrawUILine(Color color, int thickness = 2, int padding = 10)
-        {
-            Rect r = EditorGUILayout.GetControlRect(GUILayout.Height(padding + thickness));
-            r.height = thickness;
-            r.y += padding / 2;
-            r.x -= 2; // Line thickness
-            r.width += 6; // Line thickness
-            EditorGUI.DrawRect(r, color);
-        }
-        
-        public static void WhiteLine(int thickness = 1, int padding = 15) => DrawUILine(Color.white, thickness, padding);
-        public static void BlackLine(int thickness = 1, int padding = 15) => DrawUILine(Color.black, thickness, padding);
-        public static void GreyLine(int thickness = 1, int padding = 15) => DrawUILine(Color.grey, thickness, padding);
-        
-        
     }
 }

@@ -80,8 +80,6 @@ namespace InfinityPBR
 
             RemoveMissingObjects();
             ReloadSources();
-            
-            InfinityStatic.GetAllLabels(true); // cache this
 
             Undo.undoRedoPerformed += UndoCallback;
             SetBool("Reset Since Load Equipment Object", false);

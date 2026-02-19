@@ -113,18 +113,6 @@ namespace InfinityPBR
         private void ShowBlendShapes()
         {
             if (!EditorPrefs.GetBool("Blend Shapes Manager Show Blend Shapes")) return;
-
-            if (Manager.blendShapeGameObjects.Count == 0)
-            {
-                Label($"{textWarning}No Blend Shapes Found!{textColorEnd}", false,true,true);
-
-                ReloadBlendShapeData();
-                if (Button("Find Blendshapes", 150))
-                {
-                    ReloadBlendShapeData();
-                }
-                return;
-            }
             
             EditorGUI.indentLevel++;
             for (int o = 0; o < Manager.blendShapeGameObjects.Count; o++)
@@ -264,8 +252,13 @@ namespace InfinityPBR
            
            GUI.backgroundColor = redColor;
            if (GUILayout.Button("Reload Blend Shape Data", GUILayout.Width(200), GUILayout.Height(50)))
-               ReloadBlendShapeData();
-            
+           {
+               Manager.blendShapeGameObjects.Clear();
+               Manager.LoadBlendShapeData();
+               
+           }
+
+          
            GUI.backgroundColor = Color.white;
 
            EditorGUILayout.EndHorizontal();
@@ -295,12 +288,6 @@ namespace InfinityPBR
 
            EditorGUI.indentLevel--;
            EditorUtility.SetDirty(this);
-        }
-
-        private void ReloadBlendShapeData()
-        {
-            Manager.blendShapeGameObjects.Clear();
-            Manager.LoadBlendShapeData();
         }
 
         private void SectionButton(string button, string prefs, int width = 150)
