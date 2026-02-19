@@ -1,10 +1,10 @@
 using UnityEngine;
 using Game.Combat;
 
-public class CarHealth : MonoBehaviour, IDamageReceiver
+public class CarHealth : MonoBehaviour, IDamageReceiver, IResettable
 {
     [SerializeField] float hp = 100f;
-    [SerializeField] float armor = 10f;
+    [SerializeField] float armor = 5f;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -37,5 +37,10 @@ public class CarHealth : MonoBehaviour, IDamageReceiver
     void Die()
     {
         Destroy(gameObject);
+    }
+
+    public void Reset()
+    {
+        //重置生命？
     }
 }
