@@ -70,5 +70,6 @@ public class ObjectPool
     {
         prefab.SetActive(false);
         poolMap[poolType].Enqueue(prefab);
+        Debug.Log($"{prefab.name} returns to the pool");
     }
 }
