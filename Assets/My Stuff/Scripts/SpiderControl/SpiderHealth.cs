@@ -7,8 +7,8 @@ public class SpiderHealth : MonoBehaviour, IDamageReceiver
     [SerializeField] float initalHp = 25f;
     private float hp;
     [SerializeField] float armor = 5f;
-
     [SerializeField] private PoolType poolType; //這隻蜘蛛的種類
+    [SerializeField] private float disappearTime = 6.0f;
 
     private Animator _animator;
 
@@ -46,7 +46,7 @@ public class SpiderHealth : MonoBehaviour, IDamageReceiver
     IEnumerator Die()
     {
         _animator.SetBool("Dead", true);
-        yield return new WaitForSecondsRealtime(10.0f);
+        yield return new WaitForSecondsRealtime(disappearTime);
         ObjectPool.Instance().ReturnPrefabToPool(poolType, gameObject);
     }
 

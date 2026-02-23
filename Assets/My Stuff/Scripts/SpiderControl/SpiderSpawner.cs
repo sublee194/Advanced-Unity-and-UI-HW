@@ -13,6 +13,7 @@ public class SpiderSpawner : MonoBehaviour
     [SerializeField] private LayerMask spawnBlockingMask; //哪些 layer 會阻擋蜘蛛生成
     [SerializeField] private float spawnCheckRadius = 1.5f; //檢查的 Sphere 半徑
     [SerializeField] private int maxSpawnAttempts = 10; //檢查的次數上限
+    [SerializeField] private float halfSpawnRange = 10.0f;
 
     public List<Transform> spawnLocations = new List<Transform>(); //所有的生成點清單
 
@@ -113,7 +114,7 @@ public class SpiderSpawner : MonoBehaviour
             Debug.LogError("No spawn points assigned.");
             return null;
         }
-        Vector3 randPosOffset = new Vector3(Random.Range(-1.5f, 1.5f), 0, Random.Range(-1.5f, 1.5f));
+        Vector3 randPosOffset = new Vector3(Random.Range(-halfSpawnRange, halfSpawnRange), 0, Random.Range(-halfSpawnRange, halfSpawnRange));
         randSpawnPoint.position += randPosOffset;
         return randSpawnPoint;
     }
@@ -122,7 +123,7 @@ public class SpiderSpawner : MonoBehaviour
     {
         for (int i = 0;  i < maxSpawnAttempts; i++)
         {
-            Vector3 randomOffset = new Vector3(Random.Range(-1.5f, 1.5f), 0, Random.Range(-1.5f, 1.5f));
+            Vector3 randomOffset = new Vector3(Random.Range(-halfSpawnRange, halfSpawnRange), 0, Random.Range(-halfSpawnRange, halfSpawnRange));
             Vector3 candidate = basePoint + randomOffset;
 
             bool blocked = Physics.CheckSphere(candidate, spawnCheckRadius, spawnBlockingMask);
@@ -133,7 +134,7 @@ public class SpiderSpawner : MonoBehaviour
             }
         }
 
-        Debug.LogError("Can't find spawn location!");
+        Debug.Log("Can't find spawn location!");
         validPos = Vector3.zero;
         return false;
     }
