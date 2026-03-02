@@ -17,6 +17,8 @@ public class SpiderSpawner : MonoBehaviour
 
     public List<Transform> spawnLocations = new List<Transform>(); //所有的生成點清單
 
+    public CounterUI spiderCount;
+
     void Awake()
     {
         spawnTimer = spawnTime;
@@ -43,6 +45,7 @@ public class SpiderSpawner : MonoBehaviour
                     float randomYAngle = Random.Range(0f, 360f);
                     spider.transform.rotation = Quaternion.Euler(0f, randomYAngle, 0f);
                     spider.SetActive(true);
+                    spiderCount.AddTotalCount(1);
                 }
                 //Vector3 randPosOffset = new Vector3(Random.Range(-1.5f, 1.5f), 0, Random.Range(-1.5f, 1.5f));
                 //spider.transform.position = location.position + randPosOffset;
@@ -80,6 +83,7 @@ public class SpiderSpawner : MonoBehaviour
                 spider.transform.rotation = Quaternion.Euler(0f, randomYAngle, 0f);
 
                 spider.SetActive(true);
+                spiderCount.AddTotalCount(1);
             }
             
             spawnTimer = spawnTime;

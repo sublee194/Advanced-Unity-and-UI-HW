@@ -12,6 +12,8 @@ public class SpiderHealth : MonoBehaviour, IDamageReceiver
 
     private Animator _animator;
 
+    public CounterUI spiderCount;
+
     void Awake()
     {
         hp = initalHp;
@@ -34,6 +36,8 @@ public class SpiderHealth : MonoBehaviour, IDamageReceiver
         if (hp <= 0)
         {
             _animator.SetTrigger("Damaged");
+            spiderCount.MinusTotalCount(1);
+            spiderCount.AddKilledCount(1);
             StartCoroutine(Die());
         }
         else
